@@ -16,8 +16,9 @@ public class EmployeeController {
     /* 생성자 생략 가능 */
 
     @PostMapping // POST /employees
-    public Employee createEmployee(@RequestBody Employee employee) {
-        return employeeRepository.save(employee);
+    public Map<String, Long> createEmployee(@RequestBody Employee employee) {
+        Employee savedEmployee = employeeRepository.save(employee);
+        return Map.of("id", savedEmployee.getId());
     }
 
     @GetMapping("/{id}") // GET /employees/{id}
